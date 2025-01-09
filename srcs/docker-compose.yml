@@ -1,0 +1,43 @@
+networks:
+  inception:
+
+services:
+  mariadb:
+    volumes:
+      - db:/var/www/html
+    networks:
+      - inception
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    
+
+  nginx:
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    ports:
+      - 443:443
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+
+  wordpress:
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+
+
+
+volumes:
+  db:
+    driver: local
+  
+  wordpress:
+    driver: local
+  
