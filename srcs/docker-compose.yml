@@ -3,6 +3,7 @@ networks:
 
 services:
   mariadb:
+    container_name: mariadb
     restart: always
     volumes:
       - db:/var/www/html
@@ -11,9 +12,12 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD
     
 
   nginx:
+    container_name: nginx
     restart: always
     volumes:
       - wordpress:/var/www/html
@@ -26,6 +30,7 @@ services:
       dockerfile: Dockerfile
 
   wordpress:
+    container_name: wordpress
     restart: always
     volumes:
       - wordpress:/var/www/html
