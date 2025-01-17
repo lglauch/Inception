@@ -1,6 +1,6 @@
-FROM debian:buster
+FROM debian:bullseye
 
-RUN apt update && apt install -y nginx openssl
+RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx openssl
 
 # Create directory for SSL certificates
 RUN mkdir -p /etc/nginx/certs
