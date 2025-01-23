@@ -5,6 +5,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y php7.4-fpm php7.4
 	php7.4-imagick php7.4-cli php7.4-dev  \
 	php7.4-mbstring php7.4-opcache  \
 	php7.4-soap php7.4-zip \
+	default-mysql-client \
 	wget tar curl
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
