@@ -39,8 +39,6 @@ services:
   wordpress:
     container_name: wordpress
     restart: always
-    ports:
-      - 9000:9000
     volumes:
       - wordpress:/var/www/html
     networks:

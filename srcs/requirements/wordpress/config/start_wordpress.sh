@@ -1,15 +1,4 @@
 #!/bin/sh
-
-#Function to wait till MariaDB is ready
-wait_for_mariadb() {
-    echo "Waiting for MariaDB to be ready..."
-    while ! mysqladmin ping -h mariadb --silent; do
-        echo "MariaDB not ready yet. Waiting..."
-        sleep 2
-    done
-    echo "MariaDB is ready."
-}
-
 if [ ! -f /var/www/html/wp-config.php ]; then
     echo "WordPress not found. Downloading and installing..."
     rm -rf /var/www/html/*
@@ -25,10 +14,8 @@ if [ ! -f /var/www/html/wp-config.php ]; then
     chmod -R 755 /var/www/html/wp-content/upgrade
 
     cd /var/www/html/
-
-    wait_for_mariadb
     
-    echo Creating wp-config.php...
+    echo "Creating wp-config.php..."
     wp config create \
         --dbname=$MARIADB_DATABASE \
         --dbuser=$MARIADB_USER \
@@ -37,12 +24,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --path=/var/www/html/ \
         --allow-root
 
-    if [ $? -ne 0 ]; then
-        echo "Error: wp-config.php creation failed."
-        exit 1
-    fi
-
-    echo Adding redis vars to wp-config.php...
+    echo "Adding redis vars to wp-config.php..."
     wp config set WP_REDIS_HOST redis --add \
         --type=constant \
         --path=/var/www/html/ \
@@ -53,9 +35,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --path=/var/www/html/ \
         --allow-root
 
-    echo Installing WordPress...
+    echo "Installing WordPress..."
     wp core install \
-        --url="localhost" \
+        --url="$DOMAIN_NAME" \
         --title="Inception" \
         --admin_user="$WORDPRESS_ADMIN_USER" \
         --admin_password="$WORDPRESS_ADMIN_PASSWORD" \

@@ -8,7 +8,7 @@ fi
 
 # Start MariaDB in the background for initial setup
 echo "Starting MariaDB..."
-mysqld_safe --datadir='/var/lib/mysql' &
+mysqld_safe --bind-address=0.0.0.0 &
 sleep 10  # Give MariaDB time to start
 
 # Wait until MariaDB is up and running
