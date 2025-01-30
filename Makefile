@@ -9,3 +9,8 @@ down:
 
 logs:
 	cd srcs && docker-compose logs -f
+
+clean:
+	cd srcs && docker-compose down -v
+	docker volume prune -f
+	docker system prune -f
