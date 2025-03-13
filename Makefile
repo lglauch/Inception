@@ -1,8 +1,8 @@
 up:
-	cd srcs && mkdir -p /home/${USER}/data && docker-compose up -d
+	cd srcs && mkdir -p /home/${USER}/data/db && mkdir -p /home/${USER}/data/wordpress && docker-compose up -d
 
 up-all:
-	cd srcs && mkdir -p /home/${USER}/data && docker-compose up --build
+	cd srcs && mkdir -p /home/${USER}/data/db && mkdir -p /home/${USER}/data/wordpress && docker-compose up --build
 
 down:
 	cd srcs && docker-compose down
