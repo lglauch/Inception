@@ -55,27 +55,24 @@ services:
 
 
 
-volumes:
-  db:
-    driver: local
-  
-  wordpress:
-    driver: local
-  
-
 # volumes:
 #   db:
 #     driver: local
-#     driver_opts:
-#       type: none
-#       device: "/home/${USER}/data"
-#       o: bind
+  
 #   wordpress:
 #     driver: local
-#     driver_opts:
-#       type: none
-#       device: "/home/${USER}/data"
-#       o: bind
+  
 
-
-# TODO wenn in vm /etc/hosts lglauch.42.fr zu local ip adress adden und path in device in vm
+volumes:
+  db:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/${USER}/data"
+      o: bind
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/${USER}/data"
+      o: bind
