@@ -2,7 +2,7 @@ up:
 	cd srcs && mkdir -p /home/${USER}/data/db && mkdir -p /home/${USER}/data/wordpress && docker-compose up -d
 
 up-all:
-	cd srcs && mkdir -p /home/${USER}/data/db && mkdir -p /home/${USER}/data/wordpress && docker-compose up --build
+	cd srcs && mkdir -p /home/${USER}/data/db && mkdir -p /home/${USER}/data/wordpress && docker-compose up --build -d
 
 down:
 	cd srcs && docker-compose down

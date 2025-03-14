@@ -14,17 +14,6 @@ check_admin_username
 
 if [ ! -f /var/www/html/wp-config.php ]; then
     echo "WordPress not found. Downloading and installing..."
-    rm -rf /var/www/html/*
-
-    wget https://wordpress.org/latest.tar.gz
-    tar -xvf latest.tar.gz
-    mv wordpress/* /var/www/html/
-    chown -R www-data:www-data /var/www/html/
-    chmod -R 755 /var/www/html/
-
-    mkdir -p /var/www/html/wp-content/upgrade
-    chown -R www-data:www-data /var/www/html/wp-content/upgrade
-    chmod -R 755 /var/www/html/wp-content/upgrade
 
     cd /var/www/html/
     
@@ -63,7 +52,7 @@ echo "Updating siteurl and home options..."
 wp option update siteurl http://localhost --allow-root --path=/var/www/html/
 wp option update home http://localhost --allow-root --path=/var/www/html/
 # echo "Configuring PHP-FPM to listen on 0.0.0.0:9000..."
-sed -i 's/listen = .*/listen = 0.0.0.0:9000/' /etc/php/7.4/fpm/pool.d/www.conf
+sed -i 's/listen = .*/listen = 9000/' /etc/php/7.4/fpm/pool.d/www.conf
 
 echo Starting PHP-FPM...
 php-fpm7.4 -F
