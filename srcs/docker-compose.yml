@@ -1,9 +1,11 @@
 networks:
   inception:
+    name: inception
 
 services:
   mariadb:
     container_name: mariadb
+    image: mariadb
     restart: always
     volumes:
       - db:/var/lib/mysql
@@ -23,6 +25,7 @@ services:
 
   nginx:
     container_name: nginx
+    image: nginx
     restart: always
     volumes:
       - wordpress:/var/www/html
@@ -38,6 +41,7 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
     restart: always
     volumes:
       - wordpress:/var/www/html

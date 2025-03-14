@@ -21,7 +21,6 @@ done
 if [ ! -f /var/lib/mysql/.setup_done ]; then
     echo "Configuring MariaDB for WordPress..."
     mysql -u root <<-EOSQL
-    ALTER USER 'root'@'localhost' IDENTIFIED BY '${MARIADB_ROOT_PASSWORD}';
     CREATE DATABASE IF NOT EXISTS ${MARIADB_DATABASE};
     CREATE USER IF NOT EXISTS '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_PASSWORD}';
     GRANT ALL PRIVILEGES ON ${MARIADB_DATABASE}.* TO '${MARIADB_USER}'@'%';
