@@ -37,17 +37,6 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --path=/var/www/html/ \
         --allow-root
 
-    echo "Adding redis vars to wp-config.php..."
-    wp config set WP_REDIS_HOST redis --add \
-        --type=constant \
-        --path=/var/www/html/ \
-        --allow-root
-
-    wp config set WP_REDIS_PORT 6379 --add \
-        --type=constant \
-        --path=/var/www/html/ \
-        --allow-root
-
     echo "Installing WordPress..."
     wp core install \
         --url="http://localhost" \
@@ -66,14 +55,6 @@ if [ ! -f /var/www/html/wp-config.php ]; then
         --path=/var/www/html/ \
         --allow-root
 
-    #enable redis cache
-    wp plugin install redis-cache \
-        --activate \
-        --path=/var/www/html/ \
-        --allow-root
-
-    #enable redis cache
-    wp redis enable --path=/var/www/html/ --allow-root
 else
     echo "WordPress already installed."
 fi
